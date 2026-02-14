@@ -17,6 +17,9 @@ export default function Login({
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
+        // حل مشكلة آيفون: إزالة المسافات وتحويل الحروف لصغيرة
+        data.email = data.email.trim().toLowerCase();
+        data.password = data.password.trim();
         post('/login');
     };
 
@@ -111,6 +114,11 @@ export default function Login({
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                     autoFocus
+                                    autoCapitalize="none"
+                                    autoCorrect="off"
+                                    spellCheck={false}
+                                    autoComplete="email"
+                                    inputMode="email"
                                     className={`w-full pr-10 pl-4 py-3 rounded-lg bg-slate-800/50 border text-white placeholder-slate-500 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-indigo-500/50 ${
                                         errors.email
                                             ? 'border-red-500 focus:border-red-500'
@@ -140,6 +148,9 @@ export default function Login({
                                     type={showPassword ? 'text' : 'password'}
                                     value={data.password}
                                     onChange={(e) => setData('password', e.target.value)}
+                                    autoComplete="current-password"
+                                    autoCapitalize="none"
+                                    autoCorrect="off"
                                     className={`w-full pr-10 pl-12 py-3 rounded-lg bg-slate-800/50 border text-white placeholder-slate-500 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-indigo-500/50 ${
                                         errors.password
                                             ? 'border-red-500 focus:border-red-500'
